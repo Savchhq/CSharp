@@ -33,6 +33,3 @@ else
 {
     System.Console.WriteLine("Error! Incorrect operation");
 }
-Input = Console.ReadLine()!;
-float a = float.Parse(Input);
-float b = float.Parse(Console.ReadLine());
