@@ -1,0 +1,14 @@
+/home/savchuk/CSharp/Study/obj/Debug/net8.0/Study.GeneratedMSBuildEditorConfig.editorconfig
+/home/savchuk/CSharp/Study/obj/Debug/net8.0/Study.AssemblyInfoInputs.cache
+/home/savchuk/CSharp/Study/obj/Debug/net8.0/Study.AssemblyInfo.cs
+/home/savchuk/CSharp/Study/obj/Debug/net8.0/Study.csproj.CoreCompileInputs.cache
+/home/savchuk/CSharp/Study/bin/Debug/net8.0/Study
+/home/savchuk/CSharp/Study/bin/Debug/net8.0/Study.deps.json
+/home/savchuk/CSharp/Study/bin/Debug/net8.0/Study.runtimeconfig.json
+/home/savchuk/CSharp/Study/bin/Debug/net8.0/Study.dll
+/home/savchuk/CSharp/Study/bin/Debug/net8.0/Study.pdb
+/home/savchuk/CSharp/Study/obj/Debug/net8.0/Study.dll
+/home/savchuk/CSharp/Study/obj/Debug/net8.0/refint/Study.dll
+/home/savchuk/CSharp/Study/obj/Debug/net8.0/Study.pdb
+/home/savchuk/CSharp/Study/obj/Debug/net8.0/Study.genruntimeconfig.cache
+/home/savchuk/CSharp/Study/obj/Debug/net8.0/ref/Study.dll
