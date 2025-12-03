@@ -1,0 +1,15 @@
+/home/savchuk/CSharp/Exercise/bin/Debug/net8.0/Exercise
+/home/savchuk/CSharp/Exercise/bin/Debug/net8.0/Exercise.deps.json
+/home/savchuk/CSharp/Exercise/bin/Debug/net8.0/Exercise.runtimeconfig.json
+/home/savchuk/CSharp/Exercise/bin/Debug/net8.0/Exercise.dll
+/home/savchuk/CSharp/Exercise/bin/Debug/net8.0/Exercise.pdb
+/home/savchuk/CSharp/Exercise/obj/Debug/net8.0/Exercise.GeneratedMSBuildEditorConfig.editorconfig
+/home/savchuk/CSharp/Exercise/obj/Debug/net8.0/Exercise.AssemblyInfoInputs.cache
+/home/savchuk/CSharp/Exercise/obj/Debug/net8.0/Exercise.AssemblyInfo.cs
+/home/savchuk/CSharp/Exercise/obj/Debug/net8.0/Exercise.csproj.CoreCompileInputs.cache
+/home/savchuk/CSharp/Exercise/obj/Debug/net8.0/Exercise.sourcelink.json
+/home/savchuk/CSharp/Exercise/obj/Debug/net8.0/Exercise.dll
+/home/savchuk/CSharp/Exercise/obj/Debug/net8.0/refint/Exercise.dll
+/home/savchuk/CSharp/Exercise/obj/Debug/net8.0/Exercise.pdb
+/home/savchuk/CSharp/Exercise/obj/Debug/net8.0/Exercise.genruntimeconfig.cache
+/home/savchuk/CSharp/Exercise/obj/Debug/net8.0/ref/Exercise.dll
