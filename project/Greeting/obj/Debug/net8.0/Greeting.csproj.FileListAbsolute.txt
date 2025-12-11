@@ -1,0 +1,15 @@
+/home/savchuk/CSharp/project/Greeting/bin/Debug/net8.0/Greeting
+/home/savchuk/CSharp/project/Greeting/bin/Debug/net8.0/Greeting.deps.json
+/home/savchuk/CSharp/project/Greeting/bin/Debug/net8.0/Greeting.runtimeconfig.json
+/home/savchuk/CSharp/project/Greeting/bin/Debug/net8.0/Greeting.dll
+/home/savchuk/CSharp/project/Greeting/bin/Debug/net8.0/Greeting.pdb
+/home/savchuk/CSharp/project/Greeting/obj/Debug/net8.0/Greeting.GeneratedMSBuildEditorConfig.editorconfig
+/home/savchuk/CSharp/project/Greeting/obj/Debug/net8.0/Greeting.AssemblyInfoInputs.cache
+/home/savchuk/CSharp/project/Greeting/obj/Debug/net8.0/Greeting.AssemblyInfo.cs
+/home/savchuk/CSharp/project/Greeting/obj/Debug/net8.0/Greeting.csproj.CoreCompileInputs.cache
+/home/savchuk/CSharp/project/Greeting/obj/Debug/net8.0/Greeting.sourcelink.json
+/home/savchuk/CSharp/project/Greeting/obj/Debug/net8.0/Greeting.dll
+/home/savchuk/CSharp/project/Greeting/obj/Debug/net8.0/refint/Greeting.dll
+/home/savchuk/CSharp/project/Greeting/obj/Debug/net8.0/Greeting.pdb
+/home/savchuk/CSharp/project/Greeting/obj/Debug/net8.0/Greeting.genruntimeconfig.cache
+/home/savchuk/CSharp/project/Greeting/obj/Debug/net8.0/ref/Greeting.dll
