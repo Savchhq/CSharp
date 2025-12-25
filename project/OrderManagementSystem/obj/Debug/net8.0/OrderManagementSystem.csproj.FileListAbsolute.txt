@@ -1,0 +1,15 @@
+/home/savchuk/CSharp/project/OrderManagementSystem/bin/Debug/net8.0/OrderManagementSystem
+/home/savchuk/CSharp/project/OrderManagementSystem/bin/Debug/net8.0/OrderManagementSystem.deps.json
+/home/savchuk/CSharp/project/OrderManagementSystem/bin/Debug/net8.0/OrderManagementSystem.runtimeconfig.json
+/home/savchuk/CSharp/project/OrderManagementSystem/bin/Debug/net8.0/OrderManagementSystem.dll
+/home/savchuk/CSharp/project/OrderManagementSystem/bin/Debug/net8.0/OrderManagementSystem.pdb
+/home/savchuk/CSharp/project/OrderManagementSystem/obj/Debug/net8.0/OrderManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
+/home/savchuk/CSharp/project/OrderManagementSystem/obj/Debug/net8.0/OrderManagementSystem.AssemblyInfoInputs.cache
+/home/savchuk/CSharp/project/OrderManagementSystem/obj/Debug/net8.0/OrderManagementSystem.AssemblyInfo.cs
+/home/savchuk/CSharp/project/OrderManagementSystem/obj/Debug/net8.0/OrderManagementSystem.csproj.CoreCompileInputs.cache
+/home/savchuk/CSharp/project/OrderManagementSystem/obj/Debug/net8.0/OrderManagementSystem.sourcelink.json
+/home/savchuk/CSharp/project/OrderManagementSystem/obj/Debug/net8.0/OrderManagementSystem.dll
+/home/savchuk/CSharp/project/OrderManagementSystem/obj/Debug/net8.0/refint/OrderManagementSystem.dll
+/home/savchuk/CSharp/project/OrderManagementSystem/obj/Debug/net8.0/OrderManagementSystem.pdb
+/home/savchuk/CSharp/project/OrderManagementSystem/obj/Debug/net8.0/OrderManagementSystem.genruntimeconfig.cache
+/home/savchuk/CSharp/project/OrderManagementSystem/obj/Debug/net8.0/ref/OrderManagementSystem.dll

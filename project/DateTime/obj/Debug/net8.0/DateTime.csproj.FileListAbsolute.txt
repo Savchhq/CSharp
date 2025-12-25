@@ -1,0 +1,15 @@
+/home/savchuk/CSharp/project/DateTime/bin/Debug/net8.0/DateTime
+/home/savchuk/CSharp/project/DateTime/bin/Debug/net8.0/DateTime.deps.json
+/home/savchuk/CSharp/project/DateTime/bin/Debug/net8.0/DateTime.runtimeconfig.json
+/home/savchuk/CSharp/project/DateTime/bin/Debug/net8.0/DateTime.dll
+/home/savchuk/CSharp/project/DateTime/bin/Debug/net8.0/DateTime.pdb
+/home/savchuk/CSharp/project/DateTime/obj/Debug/net8.0/DateTime.GeneratedMSBuildEditorConfig.editorconfig
+/home/savchuk/CSharp/project/DateTime/obj/Debug/net8.0/DateTime.AssemblyInfoInputs.cache
+/home/savchuk/CSharp/project/DateTime/obj/Debug/net8.0/DateTime.AssemblyInfo.cs
+/home/savchuk/CSharp/project/DateTime/obj/Debug/net8.0/DateTime.csproj.CoreCompileInputs.cache
+/home/savchuk/CSharp/project/DateTime/obj/Debug/net8.0/DateTime.sourcelink.json
+/home/savchuk/CSharp/project/DateTime/obj/Debug/net8.0/DateTime.dll
+/home/savchuk/CSharp/project/DateTime/obj/Debug/net8.0/refint/DateTime.dll
+/home/savchuk/CSharp/project/DateTime/obj/Debug/net8.0/DateTime.pdb
+/home/savchuk/CSharp/project/DateTime/obj/Debug/net8.0/DateTime.genruntimeconfig.cache
+/home/savchuk/CSharp/project/DateTime/obj/Debug/net8.0/ref/DateTime.dll

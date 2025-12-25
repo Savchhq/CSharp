@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HDAncCzy0/20kNCmWqoT3GK4clzER/bRITyBtXjAvyXtb6P2X+nO0/HErO2vnv+uqrfdWrhfoiN+8hxxj/RKtQ==",
+  "dgSpecHash": "j3skvM8/Zwx+nQny7HwW5TVLEcoMg02qh/HwXDF3kW+S7JVOjw3XE4yXnRyYYEkv2AYe47UgX1ul/oY0TpzZ8A==",
   "success": true,
-  "projectFilePath": "/home/savchuk/CSharp/Exercise/Exercise.csproj",
+  "projectFilePath": "/home/savchuk/CSharp/project/GradeAnalyzer/Exercise.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/savchuk/CSharp/StudySecondProject/StudySecondProject.csproj": {}
+    "/home/savchuk/CSharp/project/Example/StudySecondProject.csproj": {}
   },
   "projects": {
-    "/home/savchuk/CSharp/StudySecondProject/StudySecondProject.csproj": {
+    "/home/savchuk/CSharp/project/Example/StudySecondProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/savchuk/CSharp/StudySecondProject/StudySecondProject.csproj",
+        "projectUniqueName": "/home/savchuk/CSharp/project/Example/StudySecondProject.csproj",
         "projectName": "StudySecondProject",
-        "projectPath": "/home/savchuk/CSharp/StudySecondProject/StudySecondProject.csproj",
+        "projectPath": "/home/savchuk/CSharp/project/Example/StudySecondProject.csproj",
         "packagesPath": "/home/savchuk/.nuget/packages/",
-        "outputPath": "/home/savchuk/CSharp/StudySecondProject/obj/",
+        "outputPath": "/home/savchuk/CSharp/project/Example/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/savchuk/.nuget/NuGet/NuGet.Config"
@@ -53,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.121/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.122/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
