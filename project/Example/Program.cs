@@ -1,16 +1,18 @@
-﻿namespace Practic
+﻿using System.Runtime.InteropServices;
+
+namespace Practic
 {
 class Program
 {
         static void Main(string[] args)
-    {  
+    {   
         Passwords one = new Passwords();
         one.Password = "https123";
         one.ShowInfo();
         
         List<Human> humans = new List<Human>();
         humans.Add(new Human("Sophia", 15));
-        humans.Add(new Human("Vitaliy", 18));
+        humans.Add(new Human("Vitaliy", 27));
         humans.Add(new Human("Vlad", 18, "Pryrodna 10"));
         humans[1].Address = "Zadvirie";
         humans[1].print();
@@ -19,7 +21,6 @@ class Program
             {
                 System.Console.WriteLine(human.Name);
             }
-
         Dictionary<int, Human> humanKey = new Dictionary<int, Human>();
         humanKey.Add(1, new Human("Sophia", 15));
         humanKey.Add(2, new Human("Jack", 27));

@@ -1,0 +1,15 @@
+/home/savchuk/CSharp/project/Gym/obj/Debug/net8.0/Gym.GeneratedMSBuildEditorConfig.editorconfig
+/home/savchuk/CSharp/project/Gym/obj/Debug/net8.0/Gym.AssemblyInfoInputs.cache
+/home/savchuk/CSharp/project/Gym/obj/Debug/net8.0/Gym.AssemblyInfo.cs
+/home/savchuk/CSharp/project/Gym/obj/Debug/net8.0/Gym.csproj.CoreCompileInputs.cache
+/home/savchuk/CSharp/project/Gym/obj/Debug/net8.0/Gym.sourcelink.json
+/home/savchuk/CSharp/project/Gym/bin/Debug/net8.0/Gym
+/home/savchuk/CSharp/project/Gym/bin/Debug/net8.0/Gym.deps.json
+/home/savchuk/CSharp/project/Gym/bin/Debug/net8.0/Gym.runtimeconfig.json
+/home/savchuk/CSharp/project/Gym/bin/Debug/net8.0/Gym.dll
+/home/savchuk/CSharp/project/Gym/bin/Debug/net8.0/Gym.pdb
+/home/savchuk/CSharp/project/Gym/obj/Debug/net8.0/Gym.dll
+/home/savchuk/CSharp/project/Gym/obj/Debug/net8.0/refint/Gym.dll
+/home/savchuk/CSharp/project/Gym/obj/Debug/net8.0/Gym.pdb
+/home/savchuk/CSharp/project/Gym/obj/Debug/net8.0/Gym.genruntimeconfig.cache
+/home/savchuk/CSharp/project/Gym/obj/Debug/net8.0/ref/Gym.dll
