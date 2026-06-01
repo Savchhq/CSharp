@@ -13,7 +13,7 @@ public class Membership
         CountSessions = sessions;
         Hour = hour;
     }
-
+ 
     public bool Login(int currentHour)
     {
         return CountSessions > 0 && currentHour < Hour;

@@ -6,7 +6,7 @@ class Program
 {
         static void Main(string[] args)
     {   
-        Passwords one = new Passwords();
+        /*Passwords one = new Passwords();
         one.Password = "https123";
         one.ShowInfo();
         
@@ -29,8 +29,29 @@ class Program
 
         System.Console.WriteLine(humanKey[1].Name);
 
-        Console.ReadKey();
+        Console.ReadKey();*/ 
+        Passwords one = new Passwords();
+            one.Password = "https123";
+            one.ShowInfo();
+            
+            Console.WriteLine("\n--- Database Operations ---");
+
+            // 1. Create an instance of your new DatabaseManager
+            DatabaseManager db = new DatabaseManager();
+
+            // 2. Call the methods using the 'db' object
+            db.AddHuman("Sophia", 15, null);
+            db.AddHuman("Vitaliy", 27, null);
+            db.AddHuman("Vlad", 18, "Pryrodna 10");
+            db.AddHuman("Jack", 27, null); 
+
+            db.UpdateHumanAddress("Vitaliy", "Zadvirie");
+
+            db.DeleteHuman("Jack");
+
+            db.PrintAllHumans();
+
+            Console.ReadKey();
+        }
     }
-    
-}
 }
