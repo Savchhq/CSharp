@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using NZWalks.Models.Domain;
 namespace NZWalks.Data
 {
     public class NZWalksDbContext : DbContext
