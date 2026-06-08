@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NZWalks.Models.Domain;
+using NZWalks.Data;
 
 namespace MyApp.Namespace
 {
@@ -8,33 +9,38 @@ namespace MyApp.Namespace
     [ApiController]
     public class RegionsController : ControllerBase
     {
+        private readonly NZWalksDbContext _dbContext;
+
+        public RegionsController(NZWalksDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         [HttpGet]
         public IActionResult GetAll()
         {
-            var regions = new List<Region>()
-            {
-                new Region
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Auckland Region",
-                    Code = "AKL",
-                    RegionImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Auckland_Region_location_in_New_Zealand.svg/250px-Auckland_Region_location_in_New_Zealand.svg.png"
-                },
-                new Region
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Wellington Region",
-                    Code = "WLG",
-                    RegionImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Wellington_Region_location_in_New_Zealand.svg/250px-Wellington_Region_location_in_New_Zealand.svg.png"
-                }
-            };
+            var regions = _dbContext.Regions.ToList();
             return Ok(regions);
+        }
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult GetById([FromRoute] Guid id)
+        {
+            var region = _dbContext.Regions.Find(id);
+            //var region = _dbContext.Regions.FirstOrDefault(x => x.Id == id);
+            if(region == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+             return Ok(region);   
+            }
         }
         [HttpPost]
         public IActionResult AddRegion()
         {
-            
-         return Ok();
+            //var region;
+            return Ok();
         }
         [HttpPut("{id}")]
         public IActionResult UpdateRegion()
