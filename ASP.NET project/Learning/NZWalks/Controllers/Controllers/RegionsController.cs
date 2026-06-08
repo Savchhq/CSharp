@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NZWalks.Models.Domain;
 using NZWalks.Data;
+using NZWalks.Models.DTO;
 
 namespace MyApp.Namespace
 {
@@ -18,23 +19,41 @@ namespace MyApp.Namespace
         [HttpGet]
         public IActionResult GetAll()
         {
-            var regions = _dbContext.Regions.ToList();
-            return Ok(regions);
+            var regionsDomain = _dbContext.Regions.ToList();
+
+            var regionsDto = new List<RegionDto>();
+            foreach (var regionDomain in regionsDomain)
+            {
+                regionsDto.Add(new RegionDto()
+                {
+                    Id = regionDomain.Id,
+                    Code = regionDomain.Code,
+                    Name = regionDomain.Name,
+                    RegionImageUrl = regionDomain.RegionImageUrl
+                });
+            }
+
+            return Ok(regionsDto);
         }
         [HttpGet]
         [Route("{id}")]
         public IActionResult GetById([FromRoute] Guid id)
         {
-            var region = _dbContext.Regions.Find(id);
+            var regionDomain = _dbContext.Regions.Find(id);
             //var region = _dbContext.Regions.FirstOrDefault(x => x.Id == id);
-            if(region == null)
+            if(regionDomain == null)
             {
                 return NotFound();
             }
-            else
+            
+            var regionDto = new RegionDto()
             {
-             return Ok(region);   
-            }
+                Id = regionDomain.Id,
+                Code = regionDomain.Code,
+                Name = regionDomain.Name,
+                RegionImageUrl = regionDomain.RegionImageUrl
+            };
+            return Ok(regionDto);   
         }
         [HttpPost]
         public IActionResult AddRegion()
