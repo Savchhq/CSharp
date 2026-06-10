@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NZWalks.Models.Domain;
 using NZWalks.Data;
 using NZWalks.Models.DTO;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyApp.Namespace
 {
@@ -56,10 +57,27 @@ namespace MyApp.Namespace
             return Ok(regionDto);   
         }
         [HttpPost]
-        public IActionResult Add()
+        public IActionResult Add([FromBody] AddRegionRequestDto addRegionRequestDto)
         {
-            //var region;
-            return Ok();
+            var regionDomainModel = new Region
+            {
+                Code = addRegionRequestDto.Code,
+                Name = addRegionRequestDto.Name,
+                RegionImageUrl = addRegionRequestDto.RegionImageUrl
+            };
+
+            _dbContext.Regions.Add(regionDomainModel);
+            _dbContext.SaveChanges();
+
+            var regionDto = new RegionDto
+            {
+                Id = regionDomainModel.Id,
+                Code = regionDomainModel.Code,
+                Name = regionDomainModel.Name,
+                RegionImageUrl = regionDomainModel.RegionImageUrl
+            };
+
+            return CreatedAtAction(nameof(GetById), new {id = regionDto.Id}, regionDto);
         }
         [HttpPut("{id}")]
         public IActionResult Update()
