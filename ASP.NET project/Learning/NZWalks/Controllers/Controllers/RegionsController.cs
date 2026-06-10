@@ -56,18 +56,18 @@ namespace MyApp.Namespace
             return Ok(regionDto);   
         }
         [HttpPost]
-        public IActionResult AddRegion()
+        public IActionResult Add()
         {
             //var region;
             return Ok();
         }
         [HttpPut("{id}")]
-        public IActionResult UpdateRegion()
+        public IActionResult Update()
         {
             return Ok();
         }
         [HttpDelete("{id}")]
-        public IActionResult DeleteRegion()
+        public IActionResult Delete()
         {
             return Ok();
         }
