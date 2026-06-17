@@ -19,9 +19,9 @@ namespace MyApp.Namespace
             _dbContext = dbContext;
         }
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var regionsDomain = _dbContext.Regions.ToList();
+            var regionsDomain = await _dbContext.Regions.ToListAsync();
 
             var regionsDto = new List<RegionDto>();
             foreach (var regionDomain in regionsDomain)
@@ -39,9 +39,9 @@ namespace MyApp.Namespace
         }
         [HttpGet]
         [Route("{id:Guid}")]
-        public IActionResult GetById([FromRoute] Guid id)
+        public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
-            var regionDomain = _dbContext.Regions.Find(id);
+            var regionDomain = await _dbContext.Regions.FindAsync(id);
             //var region = _dbContext.Regions.FirstOrDefault(x => x.Id == id);
             if(regionDomain == null)
             {
@@ -58,7 +58,7 @@ namespace MyApp.Namespace
             return Ok(regionDto);   
         }
         [HttpPost]
-        public IActionResult Add([FromBody] AddRegionRequestDto addRegionRequestDto)
+        public async Task<IActionResult> Add([FromBody] AddRegionRequestDto addRegionRequestDto)
         {
             var regionDomainModel = new Region
             {
@@ -67,8 +67,8 @@ namespace MyApp.Namespace
                 RegionImageUrl = addRegionRequestDto.RegionImageUrl
             };
 
-            _dbContext.Regions.Add(regionDomainModel);
-            _dbContext.SaveChanges();
+            await _dbContext.Regions.AddAsync(regionDomainModel);
+            await _dbContext.SaveChangesAsync();
 
             var regionDto = new RegionDto
             {
@@ -82,9 +82,9 @@ namespace MyApp.Namespace
         }
         [HttpPut]
         [Route("{id:Guid}")]
-        public IActionResult Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
         {
-            var regionDomainModel = _dbContext.Regions.Find(id);
+            var regionDomainModel = await _dbContext.Regions.FindAsync(id);
             if(regionDomainModel == null)
             {
                 return NotFound();
@@ -94,7 +94,7 @@ namespace MyApp.Namespace
             regionDomainModel.Name = updateRegionRequestDto.Name;
             regionDomainModel.RegionImageUrl = updateRegionRequestDto.RegionImageUrl;
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
 
             var regionDto = new RegionDto
             {
@@ -109,16 +109,16 @@ namespace MyApp.Namespace
         }
         [HttpDelete]
         [Route("{id:Guid}")]
-        public IActionResult Delete([FromRoute] Guid id)
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            var regionDomainModel = _dbContext.Regions.Find(id);
+            var regionDomainModel = await _dbContext.Regions.FindAsync(id);
             if(regionDomainModel == null)
             {
                 return NotFound();
             }
 
             _dbContext.Regions.Remove(regionDomainModel);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
 
             var regionDto = new RegionDto
             {
