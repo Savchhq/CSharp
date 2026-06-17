@@ -5,6 +5,7 @@ using NZWalks.Data;
 using NZWalks.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Update.Internal;
+using NZWalks.Repositories;
 
 namespace MyApp.Namespace
 {
@@ -13,16 +14,17 @@ namespace MyApp.Namespace
     public class RegionsController : ControllerBase
     {
         private readonly NZWalksDbContext _dbContext;
+        private readonly IRegionRepository _regionRepository;
 
-        public RegionsController(NZWalksDbContext dbContext)
+        public RegionsController(NZWalksDbContext dbContext, IRegionRepository regionRepository)
         {
             _dbContext = dbContext;
+            _regionRepository = regionRepository;
         }
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var regionsDomain = await _dbContext.Regions.ToListAsync();
-
+            var regionsDomain = await _regionRepository.GetAllAsync();
             var regionsDto = new List<RegionDto>();
             foreach (var regionDomain in regionsDomain)
             {
