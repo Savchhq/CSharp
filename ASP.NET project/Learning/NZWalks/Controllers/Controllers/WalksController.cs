@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NZWalks.Models.Domain;
 using NZWalks.Models.DTO;
 using NZWalks.Repositories;
@@ -30,7 +31,7 @@ namespace MyApp.Namespace
         [Route("{id:Guid}")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
-            var walkDomainModel = walkRepository.GetByIdAsync(id);
+            var walkDomainModel = await walkRepository.GetByIdAsync(id);
             if(walkDomainModel == null)
             {
                 return NotFound();
@@ -48,5 +49,34 @@ namespace MyApp.Namespace
 
             return CreatedAtAction(nameof(GetById), new {id = walkDto.Id }, walkDto);
         }
+        [HttpPut]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateWalkRequestDto updateWalkRequestDto)
+        {
+            var walkDomainModel =  mapper.Map<Walk>(updateWalkRequestDto);
+            
+            walkDomainModel = await walkRepository.UpdateAsync(id, walkDomainModel); 
+            if(walkDomainModel == null)
+            {
+                return NotFound();
+            }
+
+            var walkDto = mapper.Map<WalkDto>(walkDomainModel);
+            return Ok(walkDto);
+        }
+        [HttpDelete]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        {
+            var walkDomainModel = await walkRepository.DeleteAsync(id);
+            if(walkDomainModel == null)
+            {
+                return NotFound();
+            }
+            
+            var walkDto = mapper.Map<WalkDto>(walkDomainModel);
+            return Ok(walkDto);
+        }
+
     }
 }

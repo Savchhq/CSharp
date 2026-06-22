@@ -67,7 +67,7 @@ namespace MyApp.Namespace
                 return NotFound();
             }
 
-            var regionDto = mapper.Map<UpdateRegionRequestDto>(regionDomainModel);
+            var regionDto = mapper.Map<RegionDto>(regionDomainModel);
 
             return Ok(regionDto);
         }
