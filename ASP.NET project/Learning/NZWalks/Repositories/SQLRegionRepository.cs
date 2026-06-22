@@ -6,29 +6,29 @@ namespace NZWalks.Repositories
 {
     public class SQLRegionRepository : IRegionRepository
     {
-        private readonly NZWalksDbContext _dbContext;
+        private readonly NZWalksDbContext dbContext;
         public SQLRegionRepository(NZWalksDbContext dbContext)
         {
-            _dbContext = dbContext;
+            this.dbContext = dbContext;
         }
 
         public async Task<List<Region>> GetAllAsync()
         {
-            return await _dbContext.Regions.ToListAsync();
+            return await dbContext.Regions.ToListAsync();
         }
         public async Task<Region?> GetByIdAsync(Guid id)
         {
-            return await _dbContext.Regions.FindAsync(id);
+            return await dbContext.Regions.FindAsync(id);
         }
         public async Task<Region> AddAsync(Region region)
         {
-            await _dbContext.Regions.AddAsync(region);
-            await _dbContext.SaveChangesAsync();
+            await dbContext.Regions.AddAsync(region);
+            await dbContext.SaveChangesAsync();
             return region;
         }
         public async Task<Region?> UpdateAsync(Guid id, Region region)
         {
-            var existingRegion = await _dbContext.Regions.FindAsync(id);
+            var existingRegion = await dbContext.Regions.FindAsync(id);
             if(existingRegion == null)
             {
                 return null;
@@ -38,18 +38,18 @@ namespace NZWalks.Repositories
             existingRegion.Name = region.Name;
             existingRegion.RegionImageUrl = region.RegionImageUrl;
 
-            await _dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
             return existingRegion;
         }
         public async Task<Region?> DeleteAsync(Guid id)
         {
-           var existingRegion = await _dbContext.Regions.FindAsync(id);
+           var existingRegion = await dbContext.Regions.FindAsync(id);
             if(existingRegion == null)
             {
                 return null;
             }
-            _dbContext.Regions.Remove(existingRegion);
-            await _dbContext.SaveChangesAsync();
+            dbContext.Regions.Remove(existingRegion);
+            await dbContext.SaveChangesAsync();
             return existingRegion;
         }
     }
