@@ -10,5 +10,8 @@ namespace NZWalks.Models.DTO
         public Guid RegionId { get; set; }
         public Guid DifficultyId { get; set; }
 
+        public RegionDto Region { get; set; }
+        public DifficultyDto Difficulty { get; set; }
+
     }
 }
