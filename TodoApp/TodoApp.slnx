@@ -1,4 +1,0 @@
-<Solution>
-  <Project Path="TodoApp.Core/TodoApp.Core.csproj" />
-  <Project Path="TodoApp.DAL/TodoApp.DAL.csproj" />
-</Solution>
