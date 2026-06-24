@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Update.Internal;
 using NZWalks.Repositories;
 using AutoMapper;
+using NZWalks.CustomActionAttribute;
 
 namespace MyApp.Namespace
 {
@@ -44,6 +45,7 @@ namespace MyApp.Namespace
             return Ok(regionDto);   
         }
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Add([FromBody] AddRegionRequestDto addRegionRequestDto)
         {
             var regionDomainModel = mapper.Map<Region>(addRegionRequestDto);
@@ -56,6 +58,7 @@ namespace MyApp.Namespace
         }
         [HttpPut]
         [Route("{id:Guid}")]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
         {
             var regionDomainModel = mapper.Map<Region>(updateRegionRequestDto);

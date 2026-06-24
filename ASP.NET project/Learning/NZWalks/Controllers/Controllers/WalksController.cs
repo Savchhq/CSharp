@@ -2,6 +2,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NZWalks.CustomActionAttribute;
 using NZWalks.Models.Domain;
 using NZWalks.Models.DTO;
 using NZWalks.Repositories;
@@ -39,6 +40,7 @@ namespace MyApp.Namespace
             return Ok(mapper.Map<WalkDto>(walkDomainModel));
         }
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Add([FromBody] AddWalkRequestDto addWalkRequestDto)
         {
             var walkDomainModel = mapper.Map<Walk>(addWalkRequestDto);
@@ -51,6 +53,7 @@ namespace MyApp.Namespace
         }
         [HttpPut]
         [Route("{id:Guid}")]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateWalkRequestDto updateWalkRequestDto)
         {
             var walkDomainModel =  mapper.Map<Walk>(updateWalkRequestDto);

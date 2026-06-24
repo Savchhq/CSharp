@@ -11,6 +11,6 @@ namespace NZWalks.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<TodoTask> TodoTasks { get; set; } 
+        public DbSet<TodoTask> TodoTasks { get; set; } // need to create migration, connect db
     }
 }
