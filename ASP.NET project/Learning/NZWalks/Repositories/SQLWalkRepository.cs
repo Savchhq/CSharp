@@ -13,24 +13,41 @@ namespace NZWalks.Repositories
         {
             this.dbContext = dbContext;
         }   
-        public async Task<List<Walk>> GetAllAsync(string? FilterName = null, string? FilterQuery = null)
+        public async Task<List<Walk>> GetAllAsync(string? filterName = null, string? filterQuery = null, string? sortBy = null, int pageNumber = 1, int pageSize = 10)
         {
             var walks = dbContext.Walks.Include("Difficulty").Include("Region").AsQueryable();
-            if(string.IsNullOrWhiteSpace(FilterName) == false && string.IsNullOrWhiteSpace(FilterQuery) == false)
+            if(string.IsNullOrWhiteSpace(filterName) == false && string.IsNullOrWhiteSpace(filterQuery) == false)
             {
-                if(FilterName.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                if(filterName.Equals("Name", StringComparison.OrdinalIgnoreCase))
                 {
-                    walks = walks.Where(x => x.Name.Contains(FilterQuery));
+                    walks = walks.Where(x => x.Name.Contains(filterQuery));
                 }
-                else if (FilterName.Equals("Length", StringComparison.OrdinalIgnoreCase))
+                else if (filterName.Equals("Length", StringComparison.OrdinalIgnoreCase))
                 {
-                    if (double.TryParse(FilterQuery, out var lengthValue))
+                    if (double.TryParse(filterQuery, out var lengthValue))
                     {
                         walks = walks.Where(x => x.LengthInKM == lengthValue);
                     }
                 }
             }
-            return await walks.ToListAsync();
+
+            if (string.IsNullOrWhiteSpace(sortBy) == false)
+            {
+                if(sortBy.Equals("Length", StringComparison.OrdinalIgnoreCase))
+                {
+
+                    walks = walks.OrderBy(x => x.LengthInKM);
+                }
+                else if (sortBy.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                {
+                    walks = walks.OrderBy(x => x.Name);
+                }
+            }
+
+            var skipResults = (pageNumber - 1) * pageSize;
+
+    
+            return await walks.Skip(skipResults).Take(pageSize).ToListAsync();
         }
         public async Task<Walk?> GetByIdAsync(Guid id)
         {
