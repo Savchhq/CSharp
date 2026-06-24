@@ -22,9 +22,9 @@ namespace MyApp.Namespace
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] string? FilterName, [FromQuery] string? FilterQuery)
         {
-            var walkDomainModel = await walkRepository.GetAllAsync();
+            var walkDomainModel = await walkRepository.GetAllAsync(FilterName, FilterQuery);
         
             return Ok(mapper.Map<List<WalkDto>>(walkDomainModel));
         }
