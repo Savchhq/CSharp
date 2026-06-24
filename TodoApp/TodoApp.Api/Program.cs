@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using TodoApp.Core.Interfaces;
 using TodoApp.DAL.Data;
+using TodoApp.DAL.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<TodoAppDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("TodoAppConnectionString")));
 
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 
 var app = builder.Build();
 

@@ -12,7 +12,6 @@ public interface ITaskRepository
         int pageSize = 10);
         
     Task<TodoTask?> GetByIdAsync(int id, int userId);
-    
     Task<TodoTask> CreateAsync(TodoTask todoTask);
     Task<TodoTask?> UpdateAsync(int id, TodoTask todoTask, int userId);
     Task<TodoTask?> DeleteAsync(int id, int userId);

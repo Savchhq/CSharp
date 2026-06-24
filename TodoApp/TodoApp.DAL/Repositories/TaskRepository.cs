@@ -1,0 +1,70 @@
+using Microsoft.EntityFrameworkCore;
+using TodoApp.Core.Interfaces;
+using TodoApp.Core.Models;
+using TodoApp.DAL.Data;
+
+namespace TodoApp.DAL.Repositories
+{
+    public class TaskRepository : ITaskRepository
+    {
+        private readonly TodoAppDbContext dbContext;
+        public TaskRepository(TodoAppDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
+        public async Task<(IEnumerable<TodoTask> Items, int TotalCount)> GetAllAsync(int userId, string? searchQuery = null, int? categoryId = null, int pageNumber = 1, int pageSize = 10)
+        {
+            var task = dbContext.TodoTasks .Where(c => c.UserId == userId).AsQueryable();
+
+            if (string.IsNullOrWhiteSpace(searchQuery) == false)
+            {
+                task = task.Where(t => t.Title.Contains(searchQuery));
+            }
+
+            if (categoryId.HasValue)
+            {
+                task = task.Where(x => x.CategoryId == categoryId.Value);
+            }
+
+            var totalCount = await task.CountAsync();
+            var skipResults = (pageNumber - 1) * pageSize;
+            var items = await task.Skip(skipResults).Take(pageSize).ToListAsync();
+
+            return(items, totalCount);
+        }
+
+        public async Task<TodoTask?> GetByIdAsync(int id, int userId)
+        {
+            return await dbContext.TodoTasks.FirstOrDefaultAsync(x => x.Id == id && x.UserId == userId);
+        }
+        public async Task<TodoTask> CreateAsync(TodoTask todoTask)
+        {
+            await dbContext.TodoTasks.AddAsync(todoTask);
+            await dbContext.SaveChangesAsync(); 
+            return todoTask;
+        }
+        public async Task<TodoTask?> UpdateAsync(int id, TodoTask todoTask, int userId)
+        {
+            var existing = await dbContext.TodoTasks.FirstOrDefaultAsync(x => x.Id == id);
+            if (existing == null) 
+            return null;
+
+            existing.Title = todoTask.Title;
+            existing.Description = todoTask.Description;
+            existing.IsCompleted = todoTask.IsCompleted;
+            await dbContext.SaveChangesAsync();
+            return existing;
+        }
+        public async Task<TodoTask?> DeleteAsync(int id, int userId)
+        {
+            var todoTask = await GetByIdAsync(id, userId);
+            if (todoTask == null) return null;
+
+            dbContext.TodoTasks.Remove(todoTask);
+            await dbContext.SaveChangesAsync();
+            return todoTask;
+        }
+
+    }
+}
