@@ -28,14 +28,14 @@ public class TaskService : ITaskService
         return null;
         return mapper.Map<TaskDto>(task);
     }
-    public async Task<TaskDto> CreateAsync(TaskDto taskDto, int userId)
+    public async Task<TaskDto> CreateAsync(CreateTaskDto taskDto, int userId)
     {
         var task = mapper.Map<TodoTask>(taskDto);
         task.UserId = userId;
         task = await taskRepository.CreateAsync(task);
         return mapper.Map<TaskDto>(task);
     }
-    public async Task<TaskDto?> UpdateAsync(int id, TaskDto taskDto, int userId)
+    public async Task<TaskDto?> UpdateAsync(int id, UpdateTaskDto taskDto, int userId)
     {
         var task = mapper.Map<TodoTask>(taskDto);
 
@@ -48,11 +48,11 @@ public class TaskService : ITaskService
     }
     public async Task<TaskDto?> DeleteAsync(int id, int userId)
     {
-    var deletedTask = await taskRepository.DeleteAsync(id, userId);
-
-    if (deletedTask == null)
+        var deletedTask = await taskRepository.DeleteAsync(id, userId);
+    
+        if (deletedTask == null)
         return null;
-
-    return mapper.Map<TaskDto>(deletedTask);
+    
+        return mapper.Map<TaskDto>(deletedTask);
     }
 }

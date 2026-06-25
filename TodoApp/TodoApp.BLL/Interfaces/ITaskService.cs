@@ -8,9 +8,9 @@ public interface ITaskService
     
     Task<TaskDto?> GetByIdAsync(int id, int userId);
     
-    Task<TaskDto> CreateAsync(TaskDto taskDto, int userId);
+    Task<TaskDto> CreateAsync(CreateTaskDto taskDto, int userId);
     
-    Task<TaskDto?> UpdateAsync(int id, TaskDto taskDto, int userId);
+    Task<TaskDto?> UpdateAsync(int id, UpdateTaskDto taskDto, int userId);
     
     Task<TaskDto?> DeleteAsync(int id, int userId);
 }
