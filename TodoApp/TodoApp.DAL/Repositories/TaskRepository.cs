@@ -15,21 +15,21 @@ namespace TodoApp.DAL.Repositories
 
         public async Task<(IEnumerable<TodoTask> Items, int TotalCount)> GetAllAsync(int userId, string? searchQuery = null, int? categoryId = null, int pageNumber = 1, int pageSize = 10)
         {
-            var task = dbContext.TodoTasks .Where(c => c.UserId == userId).AsQueryable();
+            var tasks = dbContext.TodoTasks.Where(c => c.UserId == userId).AsQueryable();
 
             if (string.IsNullOrWhiteSpace(searchQuery) == false)
             {
-                task = task.Where(t => t.Title.Contains(searchQuery));
+                tasks = tasks.Where(t => t.Title.Contains(searchQuery));
             }
 
             if (categoryId.HasValue)
             {
-                task = task.Where(x => x.CategoryId == categoryId.Value);
+                tasks = tasks.Where(x => x.CategoryId == categoryId.Value);
             }
 
-            var totalCount = await task.CountAsync();
+            var totalCount = await tasks.CountAsync();
             var skipResults = (pageNumber - 1) * pageSize;
-            var items = await task.Skip(skipResults).Take(pageSize).ToListAsync();
+            var items = await tasks.Skip(skipResults).Take(pageSize).ToListAsync();
 
             return(items, totalCount);
         }
@@ -46,7 +46,7 @@ namespace TodoApp.DAL.Repositories
         }
         public async Task<TodoTask?> UpdateAsync(int id, TodoTask todoTask, int userId)
         {
-            var existing = await dbContext.TodoTasks.FirstOrDefaultAsync(x => x.Id == id);
+            var existing = await dbContext.TodoTasks.FirstOrDefaultAsync(x => x.Id == id && x.UserId == userId);
             if (existing == null) 
             return null;
 
@@ -58,7 +58,7 @@ namespace TodoApp.DAL.Repositories
         }
         public async Task<TodoTask?> DeleteAsync(int id, int userId)
         {
-            var todoTask = await GetByIdAsync(id, userId);
+            var todoTask = await dbContext.TodoTasks.FirstOrDefaultAsync(x => x.Id == id && x.UserId == userId);
             if (todoTask == null) return null;
 
             dbContext.TodoTasks.Remove(todoTask);
