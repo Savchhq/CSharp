@@ -37,5 +37,22 @@ namespace MyApp.Namespace
             }
             return BadRequest("Something went wrong");
         }
+        [HttpPost]
+        [Route("Login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequestDto loginRequestDto)
+        {
+            var user = await userManager.FindByEmailAsync(loginRequestDto.Username);
+            if(user != null)
+            {
+                var checkPassword = await userManager.CheckPasswordAsync(user, loginRequestDto.Password);
+                if (checkPassword)
+                {
+                    //need to add creating token
+                    return Ok();
+                }
+            }
+            
+            return BadRequest("Invalid password or username");
+        }
     }
 }
