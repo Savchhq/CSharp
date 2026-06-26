@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore.Update.Internal;
 using NZWalks.Repositories;
 using AutoMapper;
 using NZWalks.CustomActionAttribute;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyApp.Namespace
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RegionsController : ControllerBase
     {
         private readonly IRegionRepository regionRepository;
