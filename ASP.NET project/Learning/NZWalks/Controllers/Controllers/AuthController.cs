@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using NZWalks.Models.DTO;
+using NZWalks.Repositories;
 
 namespace MyApp.Namespace
 {
@@ -11,9 +12,11 @@ namespace MyApp.Namespace
     public class AuthController : ControllerBase
     {
         private readonly UserManager<IdentityUser> userManager;
-        public AuthController(UserManager<IdentityUser> userManager)
+        private readonly ITokenRepository tokenRepository;
+        public AuthController(UserManager<IdentityUser> userManager, ITokenRepository tokenRepository)
         {
             this.userManager = userManager;
+            this.tokenRepository = tokenRepository;
         }
         [HttpPost]
         [Route("Register")]
@@ -47,8 +50,17 @@ namespace MyApp.Namespace
                 var checkPassword = await userManager.CheckPasswordAsync(user, loginRequestDto.Password);
                 if (checkPassword)
                 {
-                    //need to add creating token
-                    return Ok();
+                    var roles = await userManager.GetRolesAsync(user);
+
+                    if(roles != null)
+                    {
+                        var jwtToken = tokenRepository.CreateJWTToken(user, roles.ToList());
+                        var response = new LoginResponseDto
+                        {
+                            JwtToken = jwtToken  
+                        };
+                        return Ok(jwtToken);
+                    }
                 }
             }
             
