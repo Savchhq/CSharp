@@ -17,13 +17,13 @@ public class CategoryService : ICategoryService
         _categoryRepository = categoryRepository;
     }
 
-    public async Task<IEnumerable<CategoryDto>> GetAllByUserIdAsync(int userId)
+    public async Task<IEnumerable<CategoryDto>> GetAllByUserIdAsync(Guid userId)
     {
         var categories = await _categoryRepository.GetAllByUserIdAsync(userId);
         return _mapper.Map<IEnumerable<CategoryDto>>(categories);
     }
 
-    public async Task<CategoryDto?> GetByIdAsync(int id, int userId)
+    public async Task<CategoryDto?> GetByIdAsync(Guid id, Guid userId)
     {
         var category = await _categoryRepository.GetByIdAsync(id, userId);
         if (category == null) 
@@ -32,7 +32,7 @@ public class CategoryService : ICategoryService
         return _mapper.Map<CategoryDto>(category);
     }
 
-    public async Task<CategoryDto> CreateAsync(CreateUpdateCategoryDto categoryDto, int userId)
+    public async Task<CategoryDto> CreateAsync(CreateUpdateCategoryDto categoryDto, Guid userId)
     {
         var category = _mapper.Map<Category>(categoryDto);
         category.UserId = userId; 
@@ -41,7 +41,7 @@ public class CategoryService : ICategoryService
         return _mapper.Map<CategoryDto>(createdCategory);
     }
 
-    public async Task<CategoryDto?> UpdateAsync(int id, CreateUpdateCategoryDto categoryDto, int userId)
+    public async Task<CategoryDto?> UpdateAsync(Guid id, CreateUpdateCategoryDto categoryDto, Guid userId)
     {
         var category = _mapper.Map<Category>(categoryDto);
         var updatedCategory = await _categoryRepository.UpdateAsync(id, category, userId);
@@ -51,7 +51,7 @@ public class CategoryService : ICategoryService
         return _mapper.Map<CategoryDto>(updatedCategory);
     }
 
-    public async Task<CategoryDto?> DeleteAsync(int id, int userId)
+    public async Task<CategoryDto?> DeleteAsync(Guid id, Guid userId)
     {
         var deletedCategory = await _categoryRepository.DeleteAsync(id, userId);
         if (deletedCategory == null) return null;

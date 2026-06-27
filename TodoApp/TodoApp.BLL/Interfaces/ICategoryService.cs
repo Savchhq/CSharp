@@ -5,9 +5,9 @@ namespace TodoApp.BLL.Interfaces;
 
 public interface ICategoryService
 {
-    Task<IEnumerable<CategoryDto>> GetAllByUserIdAsync(int userId);
-    Task<CategoryDto?> GetByIdAsync(int id, int userId);
-    Task<CategoryDto> CreateAsync(CreateUpdateCategoryDto categoryDto, int userId);
-    Task<CategoryDto?> UpdateAsync(int id, CreateUpdateCategoryDto categoryDto, int userId);
-    Task<CategoryDto?> DeleteAsync(int id, int userId);
+    Task<IEnumerable<CategoryDto>> GetAllByUserIdAsync(Guid userId);
+    Task<CategoryDto?> GetByIdAsync(Guid id, Guid userId);
+    Task<CategoryDto> CreateAsync(CreateUpdateCategoryDto categoryDto, Guid userId);
+    Task<CategoryDto?> UpdateAsync(Guid id, CreateUpdateCategoryDto categoryDto, Guid userId);
+    Task<CategoryDto?> DeleteAsync(Guid id, Guid userId);
 }

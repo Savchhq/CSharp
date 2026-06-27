@@ -14,7 +14,6 @@ namespace MyApp.Namespace
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class RegionsController : ControllerBase
     {
         private readonly IRegionRepository regionRepository;
@@ -26,6 +25,7 @@ namespace MyApp.Namespace
             this.mapper = mapper;
         }
         [HttpGet]
+        [Authorize(Roles = "Reader")]
         public async Task<IActionResult> GetAll()
         {
             var regionsDomain = await regionRepository.GetAllAsync();
@@ -48,6 +48,7 @@ namespace MyApp.Namespace
         }
         [HttpPost]
         [ValidateModel]
+        [Authorize]
         public async Task<IActionResult> Add([FromBody] AddRegionRequestDto addRegionRequestDto)
         {
             var regionDomainModel = mapper.Map<Region>(addRegionRequestDto);
@@ -61,6 +62,7 @@ namespace MyApp.Namespace
         [HttpPut]
         [Route("{id:Guid}")]
         [ValidateModel]
+        [Authorize]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
         {
             var regionDomainModel = mapper.Map<Region>(updateRegionRequestDto);
@@ -78,6 +80,7 @@ namespace MyApp.Namespace
         }
         [HttpDelete]
         [Route("{id:Guid}")]
+        [Authorize]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var regionDomainModel = await regionRepository.DeleteAsync(id);

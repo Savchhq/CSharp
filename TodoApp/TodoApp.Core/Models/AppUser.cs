@@ -1,11 +1,9 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace TodoApp.Core.Models;
 
-public class User
+public class AppUser : IdentityUser<Guid>
 {
-    public int Id { get; set; }
-    public string Email { get; set; } = string.Empty;
-    public string PasswordHash { get; set; } = string.Empty;
-
     public ICollection<Category> Categories { get; set; } = new List<Category>();
     public ICollection<TodoTask> Tasks { get; set; } = new List<TodoTask>();
 }

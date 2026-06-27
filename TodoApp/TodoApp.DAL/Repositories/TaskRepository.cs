@@ -13,7 +13,7 @@ namespace TodoApp.DAL.Repositories
             this.dbContext = dbContext;
         }
 
-        public async Task<(IEnumerable<TodoTask> Items, int TotalCount)> GetAllAsync(int userId, string? searchQuery = null, int? categoryId = null, int pageNumber = 1, int pageSize = 10)
+        public async Task<(IEnumerable<TodoTask> Items, int TotalCount)> GetAllAsync(Guid userId, string? searchQuery = null, Guid? categoryId = null, int pageNumber = 1, int pageSize = 10)
         {
             var tasks = dbContext.TodoTasks.Where(c => c.UserId == userId).AsQueryable();
 
@@ -34,17 +34,18 @@ namespace TodoApp.DAL.Repositories
             return(items, totalCount);
         }
 
-        public async Task<TodoTask?> GetByIdAsync(int id, int userId)
+        public async Task<TodoTask?> GetByIdAsync(Guid id, Guid userId)
         {
             return await dbContext.TodoTasks.FirstOrDefaultAsync(x => x.Id == id && x.UserId == userId);
         }
         public async Task<TodoTask> CreateAsync(TodoTask todoTask)
         {
+            todoTask.Id = Guid.NewGuid();
             await dbContext.TodoTasks.AddAsync(todoTask);
             await dbContext.SaveChangesAsync(); 
             return todoTask;
         }
-        public async Task<TodoTask?> UpdateAsync(int id, TodoTask todoTask, int userId)
+        public async Task<TodoTask?> UpdateAsync(Guid id, TodoTask todoTask, Guid userId)
         {
             var existing = await dbContext.TodoTasks.FirstOrDefaultAsync(x => x.Id == id && x.UserId == userId);
             if (existing == null) 
@@ -56,7 +57,7 @@ namespace TodoApp.DAL.Repositories
             await dbContext.SaveChangesAsync();
             return existing;
         }
-        public async Task<TodoTask?> DeleteAsync(int id, int userId)
+        public async Task<TodoTask?> DeleteAsync(Guid id, Guid userId)
         {
             var todoTask = await dbContext.TodoTasks.FirstOrDefaultAsync(x => x.Id == id && x.UserId == userId);
             if (todoTask == null) return null;

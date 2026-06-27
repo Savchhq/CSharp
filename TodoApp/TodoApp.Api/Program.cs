@@ -5,6 +5,8 @@ using TodoApp.DAL.Repositories;
 using TodoApp.BLL.Mappings;
 using TodoApp.BLL.Services;
 using TodoApp.BLL.Interfaces;
+using TodoApp.Core.Models;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +17,18 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<TodoAppDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("TodoAppConnectionString")));
 
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>(options =>
+{
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 6;
+    options.Password.RequiredUniqueChars = 1;
+})
+.AddEntityFrameworkStores<TodoAppDbContext>()
+.AddDefaultTokenProviders();
+
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<ITaskService, TaskService>();

@@ -4,13 +4,13 @@ namespace TodoApp.BLL.Interfaces;
 
 public interface ITaskService
 {
-    Task<(IEnumerable<TaskDto> Items, int TotalCount)> GetAllAsync(int userId, string? searchQuery = null, int? categoryId = null, int pageNumber = 1, int pageSize = 10);
+    Task<(IEnumerable<TaskDto> Items, int TotalCount)> GetAllAsync(Guid userId, string? searchQuery = null, Guid? categoryId = null, int pageNumber = 1, int pageSize = 10);
     
-    Task<TaskDto?> GetByIdAsync(int id, int userId);
+    Task<TaskDto?> GetByIdAsync(Guid id, Guid userId);
     
-    Task<TaskDto> CreateAsync(CreateTaskDto taskDto, int userId);
+    Task<TaskDto> CreateAsync(CreateTaskDto taskDto, Guid userId);
     
-    Task<TaskDto?> UpdateAsync(int id, UpdateTaskDto taskDto, int userId);
+    Task<TaskDto?> UpdateAsync(Guid id, UpdateTaskDto taskDto, Guid userId);
     
-    Task<TaskDto?> DeleteAsync(int id, int userId);
+    Task<TaskDto?> DeleteAsync(Guid id, Guid userId);
 }

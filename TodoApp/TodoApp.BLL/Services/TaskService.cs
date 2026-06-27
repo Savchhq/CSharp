@@ -15,27 +15,27 @@ public class TaskService : ITaskService
         this.mapper = mapper;
         this.taskRepository = taskRepository;
     }
-    public async Task<(IEnumerable<TaskDto> Items, int TotalCount)> GetAllAsync(int userId, string? searchQuery = null, int? categoryId = null, int pageNumber = 1, int pageSize = 10)
+    public async Task<(IEnumerable<TaskDto> Items, int TotalCount)> GetAllAsync(Guid userId, string? searchQuery = null, Guid? categoryId = null, int pageNumber = 1, int pageSize = 10)
     {
         var tasks = await  taskRepository.GetAllAsync(userId, searchQuery, categoryId, pageNumber, pageSize);
         var dtos = mapper.Map<IEnumerable<TaskDto>>(tasks.Items);
         return (dtos, tasks.TotalCount);
     }
-    public async Task<TaskDto?> GetByIdAsync(int id, int userId)
+    public async Task<TaskDto?> GetByIdAsync(Guid id, Guid userId)
     {
         var task = await taskRepository.GetByIdAsync(id, userId);
         if(task == null)
         return null;
         return mapper.Map<TaskDto>(task);
     }
-    public async Task<TaskDto> CreateAsync(CreateTaskDto taskDto, int userId)
+    public async Task<TaskDto> CreateAsync(CreateTaskDto taskDto, Guid userId)
     {
         var task = mapper.Map<TodoTask>(taskDto);
         task.UserId = userId;
         task = await taskRepository.CreateAsync(task);
         return mapper.Map<TaskDto>(task);
     }
-    public async Task<TaskDto?> UpdateAsync(int id, UpdateTaskDto taskDto, int userId)
+    public async Task<TaskDto?> UpdateAsync(Guid id, UpdateTaskDto taskDto, Guid userId)
     {
         var task = mapper.Map<TodoTask>(taskDto);
 
@@ -46,7 +46,7 @@ public class TaskService : ITaskService
 
         return mapper.Map<TaskDto>(updatedTask);
     }
-    public async Task<TaskDto?> DeleteAsync(int id, int userId)
+    public async Task<TaskDto?> DeleteAsync(Guid id, Guid userId)
     {
         var deletedTask = await taskRepository.DeleteAsync(id, userId);
     

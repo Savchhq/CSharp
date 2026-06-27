@@ -1,15 +1,13 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TodoApp.Core.Models;
 namespace TodoApp.DAL.Data
 {
-    public class TodoAppDbContext : DbContext
+    public class TodoAppDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
     {
-        public TodoAppDbContext(DbContextOptions dbContextOptions): base( dbContextOptions)
-        {
+        public TodoAppDbContext(DbContextOptions dbContextOptions): base( dbContextOptions) {}
 
-        }
-
-        public DbSet<User> Users { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<TodoTask> TodoTasks { get; set; }
 

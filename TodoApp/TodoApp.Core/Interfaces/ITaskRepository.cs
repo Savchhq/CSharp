@@ -5,14 +5,14 @@ namespace TodoApp.Core.Interfaces;
 public interface ITaskRepository
 {
     Task<(IEnumerable<TodoTask> Items, int TotalCount)> GetAllAsync(
-        int userId, 
+        Guid userId, 
         string? searchQuery = null, 
-        int? categoryId = null, 
+        Guid? categoryId = null, 
         int pageNumber = 1, 
         int pageSize = 10);
         
-    Task<TodoTask?> GetByIdAsync(int id, int userId);
+    Task<TodoTask?> GetByIdAsync(Guid id, Guid userId);
     Task<TodoTask> CreateAsync(TodoTask todoTask);
-    Task<TodoTask?> UpdateAsync(int id, TodoTask todoTask, int userId);
-    Task<TodoTask?> DeleteAsync(int id, int userId);
+    Task<TodoTask?> UpdateAsync(Guid id, TodoTask todoTask, Guid userId);
+    Task<TodoTask?> DeleteAsync(Guid id, Guid userId);
 }

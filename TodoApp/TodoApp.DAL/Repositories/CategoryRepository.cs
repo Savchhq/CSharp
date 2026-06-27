@@ -13,22 +13,23 @@ namespace TodoApp.DAL.Repositories
             this.dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<Category>> GetAllByUserIdAsync(int userId)
+        public async Task<IEnumerable<Category>> GetAllByUserIdAsync(Guid userId)
         {
             return await dbContext.Categories.Include(c => c.Tasks).Where(c => c.UserId == userId) .ToListAsync();
         }
 
-        public async Task<Category?> GetByIdAsync(int id, int userId)
+        public async Task<Category?> GetByIdAsync(Guid id, Guid userId)
         {
             return await dbContext.Categories.Include(c => c.Tasks).FirstOrDefaultAsync(x => x.Id == id && x.UserId == userId);
         }
         public async Task<Category> CreateAsync(Category category)
         {
+            category.Id = Guid.NewGuid();
             await dbContext.Categories.AddAsync(category);
             await dbContext.SaveChangesAsync(); 
             return category;
         }
-        public async Task<Category?> UpdateAsync(int id, Category category, int userId)
+        public async Task<Category?> UpdateAsync(Guid id, Category category, Guid userId)
         {
             var existing = await dbContext.Categories.FirstOrDefaultAsync(x => x.Id == id);
             if (existing == null) 
@@ -38,7 +39,7 @@ namespace TodoApp.DAL.Repositories
             await dbContext.SaveChangesAsync();
             return existing;
         }
-        public async Task<Category?> DeleteAsync(int id, int userId)
+        public async Task<Category?> DeleteAsync(Guid id, Guid userId)
         {
             var category = await GetByIdAsync(id, userId);
             if (category == null) return null;
