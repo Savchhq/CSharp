@@ -54,6 +54,7 @@ namespace TodoApp.DAL.Repositories
             existing.Title = todoTask.Title;
             existing.Description = todoTask.Description;
             existing.IsCompleted = todoTask.IsCompleted;
+            existing.CategoryId = todoTask.CategoryId;
             await dbContext.SaveChangesAsync();
             return existing;
         }

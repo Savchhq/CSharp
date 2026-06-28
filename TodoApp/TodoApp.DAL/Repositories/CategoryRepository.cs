@@ -31,7 +31,7 @@ namespace TodoApp.DAL.Repositories
         }
         public async Task<Category?> UpdateAsync(Guid id, Category category, Guid userId)
         {
-            var existing = await dbContext.Categories.FirstOrDefaultAsync(x => x.Id == id);
+            var existing = await dbContext.Categories.FirstOrDefaultAsync(x => x.Id == id && x.UserId == userId);
             if (existing == null) 
             return null;
 

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TodoApp.BLL.DTOs.Auth;
 using TodoApp.BLL.Interfaces;
 
-namespace MyApp.Namespace
+namespace TodoApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
