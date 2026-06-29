@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.css',
 })
-export class TodoList {}
+export class TodoListComponent {}
