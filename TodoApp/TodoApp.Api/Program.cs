@@ -70,6 +70,16 @@ builder.Services.AddAutoMapper(options =>
     options.AddProfile<MappingProfile>();
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -77,8 +87,22 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+    var roles = new[] { "Reader", "Writer" };
+    foreach (var role in roles)
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new IdentityRole<Guid>(role));
+        }
+    }
+}
 
 app.UseHttpsRedirection();
+app.UseRouting();
+app.UseCors("AllowAngularApp");
 app.UseAuthentication(); 
 app.UseAuthorization();
 app.MapControllers();

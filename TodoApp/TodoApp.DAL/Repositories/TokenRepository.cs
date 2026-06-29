@@ -21,7 +21,8 @@ public class TokenRepository : ITokenRepository
     {
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Email, user.Email ?? string.Empty)
+            new Claim(ClaimTypes.Email, user.Email ?? string.Empty),
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
         };
 
         foreach (var role in roles)

@@ -8,13 +8,13 @@ namespace TodoApp.BLL.Services;
 
 public class AuthService : IAuthService
 {
-    private readonly UserManager<AppUser> _userManager;
-    private readonly ITokenRepository _tokenRepository;
+    private readonly UserManager<AppUser> userManager;
+    private readonly ITokenRepository tokenRepository;
 
     public AuthService(UserManager<AppUser> userManager, ITokenRepository tokenRepository)
     {
-        _userManager = userManager;
-        _tokenRepository = tokenRepository;
+        this.userManager = userManager;
+        this.tokenRepository = tokenRepository;
     }
 
     public async Task<IdentityResult> RegisterAsync(RegisterRequestDto requestDto)
@@ -24,22 +24,28 @@ public class AuthService : IAuthService
             UserName = requestDto.Email,
             Email = requestDto.Email
         };
+        var result = await userManager.CreateAsync(user, requestDto.Password);
 
-        return await _userManager.CreateAsync(user, requestDto.Password);
+        if (result.Succeeded)
+        {
+            await userManager.AddToRolesAsync(user, new[] { "Reader", "Writer" });
+        }
+
+        return result;
     }
 
     public async Task<string?> LoginAsync(LoginRequestDto requestDto)
     {
-        var user = await _userManager.FindByEmailAsync(requestDto.Email);
+        var user = await userManager.FindByEmailAsync(requestDto.Email);
 
         if (user != null)
         {
-            var checkPasswordResult = await _userManager.CheckPasswordAsync(user, requestDto.Password);
+            var checkPasswordResult = await userManager.CheckPasswordAsync(user, requestDto.Password);
 
             if (checkPasswordResult)
             {
-                var roles = await _userManager.GetRolesAsync(user);
-                return _tokenRepository.CreateJWTToken(user, roles.ToList());
+                var roles = await userManager.GetRolesAsync(user);
+                return tokenRepository.CreateJWTToken(user, roles.ToList());
             }
         }
 
