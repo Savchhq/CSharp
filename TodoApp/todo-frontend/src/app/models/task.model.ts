@@ -1,0 +1,7 @@
+export interface TaskDto {
+  id: number;
+  title: string;
+  description?: string; 
+  isCompleted: boolean;
+  categoryId: string; 
+}
