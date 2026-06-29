@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-todo-list',
   imports: [],
-  templateUrl: './todo-list.html',
-  styleUrl: './todo-list.css',
+  templateUrl: './todo-list.component.html',
+  styleUrl: './todo-list.component.css',
 })
 export class TodoList {}
