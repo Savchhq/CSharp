@@ -24,7 +24,7 @@ namespace TodoApp.Api.Controllers
             {
                 return Ok("User was registered! Please login.");
             }
-            return BadRequest("Something went wrong");
+            return BadRequest(result.Errors);
         }
         [HttpPost]
         [Route("Login")]
