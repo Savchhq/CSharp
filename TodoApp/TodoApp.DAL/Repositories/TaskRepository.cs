@@ -15,7 +15,7 @@ namespace TodoApp.DAL.Repositories
 
         public async Task<(IEnumerable<TodoTask> Items, int TotalCount)> GetAllAsync(Guid userId, string? searchQuery = null, Guid? categoryId = null, int pageNumber = 1, int pageSize = 10)
         {
-            var tasks = dbContext.TodoTasks.Where(c => c.UserId == userId).AsQueryable();
+            var tasks = dbContext.TodoTasks.Include(t => t.Category).Where(c => c.UserId == userId).AsQueryable();
 
             if (string.IsNullOrWhiteSpace(searchQuery) == false)
             {
