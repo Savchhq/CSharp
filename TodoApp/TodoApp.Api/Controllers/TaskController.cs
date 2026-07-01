@@ -22,13 +22,18 @@ namespace TodoApp.Api.Controllers
         public async Task<IActionResult> GetAll([FromQuery] GetTasksQueryDto query)
         {
             var userId = GetUserId();
-            var tasks = await taskService.GetAllAsync(
+            var (items, totalCount) = await taskService.GetAllAsync(
                 userId,
                 query.SearchQuery,
                 query.CategoryId,
                 query.PageNumber,
                 query.PageSize);
-            return Ok(tasks);
+
+            return Ok(new TasksPagedResultDto
+            {
+                Items = items,
+                TotalCount = totalCount
+            });
         }
 
         [HttpGet("{id:Guid}")]

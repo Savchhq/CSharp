@@ -1,1 +1,118 @@
-<h2>Мої завдання</h2>
+<div class="todo-container">
+  <h2>Мої завдання</h2>
+
+  <div class="filters-section">
+    <input
+      type="text"
+      placeholder="Пошук за назвою..."
+      [(ngModel)]="searchQuery"
+      (keyup.enter)="applyFilters()">
+
+    <select [(ngModel)]="filterCategoryId">
+      <option value="">Усі категорії</option>
+      <option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </option>
+    </select>
+
+    <button type="button" (click)="applyFilters()">Знайти</button>
+    <button type="button" class="secondary-btn" (click)="clearFilters()">Скинути</button>
+  </div>
+
+  <div class="add-task-section">
+    <input
+      type="text"
+      placeholder="Що потрібно зробити?"
+      [(ngModel)]="newTaskTitle"
+      (keyup.enter)="addTask()">
+
+    <textarea
+      placeholder="Опис (необов'язково)"
+      [(ngModel)]="newTaskDescription"
+      rows="2"></textarea>
+
+    <select [(ngModel)]="selectedCategoryId">
+      <option value="" disabled *ngIf="categories.length === 0">Немає категорій</option>
+      <option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </option>
+    </select>
+
+    <a routerLink="/categories" class="add-category-link">+ Створити категорію</a>
+
+    <button type="button" (click)="addTask()" [disabled]="!selectedCategoryId">Додати</button>
+  </div>
+
+  <p class="results-info" *ngIf="totalCount > 0">
+    Знайдено: {{ totalCount }}
+  </p>
+
+  <ul class="task-list" *ngIf="tasks.length > 0">
+    <li *ngFor="let task of tasks" class="task-item">
+      <ng-container *ngIf="editingTaskId !== task.id; else editForm">
+        <div class="task-content">
+          <input
+            type="checkbox"
+            [checked]="task.isCompleted"
+            (change)="toggleTask(task)">
+
+          <div class="task-text">
+            <span [class.completed]="task.isCompleted" class="task-title">
+              {{ task.title }}
+            </span>
+
+            <p class="task-description" *ngIf="task.description">
+              {{ task.description }}
+            </p>
+
+            <span class="task-category-badge" *ngIf="task.categoryName">
+              [{{ task.categoryName }}]
+            </span>
+          </div>
+        </div>
+
+        <div class="task-actions">
+          <button type="button" class="edit-btn" (click)="startEditTask(task)">Редагувати</button>
+          <button type="button" class="delete-btn" (click)="deleteTask(task.id)">Видалити</button>
+        </div>
+      </ng-container>
+
+      <ng-template #editForm>
+        <div class="edit-task-form">
+          <input type="text" [(ngModel)]="editTitle">
+          <textarea [(ngModel)]="editDescription" rows="2" placeholder="Опис"></textarea>
+
+          <select [(ngModel)]="editCategoryId">
+            <option *ngFor="let category of categories" [value]="category.id">
+              {{ category.name }}
+            </option>
+          </select>
+
+          <label class="completed-label">
+            <input type="checkbox" [(ngModel)]="editIsCompleted">
+            Виконано
+          </label>
+
+          <div class="edit-actions">
+            <button type="button" (click)="saveEditTask(task)">Зберегти</button>
+            <button type="button" class="secondary-btn" (click)="cancelEditTask()">Скасувати</button>
+          </div>
+        </div>
+      </ng-template>
+    </li>
+  </ul>
+
+  <div class="pagination" *ngIf="totalPages > 1">
+    <button type="button" (click)="goToPage(pageNumber - 1)" [disabled]="pageNumber === 1">
+      Назад
+    </button>
+    <span>{{ pageNumber }} / {{ totalPages }}</span>
+    <button type="button" (click)="goToPage(pageNumber + 1)" [disabled]="pageNumber === totalPages">
+      Далі
+    </button>
+  </div>
+
+  <p *ngIf="tasks.length === 0" class="empty-message">
+    Завдань не знайдено. Спробуйте змінити фільтри або створіть нове!
+  </p>
+</div>
