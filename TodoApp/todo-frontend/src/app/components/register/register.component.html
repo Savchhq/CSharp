@@ -1,21 +1,42 @@
-<div class="register-container">
-  <h2>Реєстрація</h2>
+<div class="register-page">
+  <div class="register-card">
 
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <h2>Створити акаунт ✨</h2>
+    <p class="subtitle">Заповніть дані для реєстрації</p>
 
-    <div>
-      <label for="email">Email</label>
-      <input type="email" id="email" formControlName="email" placeholder="Введіть email">
-    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-    <div>
-      <label for="password">Пароль</label>
-      <input type="password" id="password" formControlName="password" placeholder="Мінімум 6 символів">
-    </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="example@gmail.com">
+      </div>
 
-    <button type="submit" [disabled]="registerForm.invalid">Зареєструватися</button>
+      <div class="form-group">
+        <label for="password">Пароль</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="Мінімум 6 символів">
+      </div>
 
-  </form>
+      <button
+        type="submit"
+        class="register-btn"
+        [disabled]="registerForm.invalid">
+        Зареєструватися
+      </button>
 
-  <p>Вже маєте акаунт? <a routerLink="/login">Увійти</a></p>
+    </form>
+
+    <p class="login-link">
+      Вже маєте акаунт?
+      <a routerLink="/login">Увійти</a>
+    </p>
+
+  </div>
 </div>
