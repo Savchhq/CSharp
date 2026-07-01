@@ -11,10 +11,10 @@ import { CategoryDto } from '../../models/category.model';
   selector: 'app-todo-list',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
-  templateUrl: './todo-list.component.html',
-  styleUrl: './todo-list.component.css'
+  templateUrl: './task.component.html',
+  styleUrl: './task.component.css'
 })
-export class TodoListComponent implements OnInit {
+export class TaskComponent implements OnInit {
   tasks: TaskDto[] = [];
   categories: CategoryDto[] = [];
   totalCount = 0;

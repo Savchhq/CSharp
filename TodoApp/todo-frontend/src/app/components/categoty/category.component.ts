@@ -11,7 +11,7 @@ import { CategoryDto, CreateUpdateCategoryDto } from '../../models/category.mode
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })
-export class CategoryListComponent implements OnInit {
+export class CategoryComponent implements OnInit {
   categories: CategoryDto[] = [];
   newCategoryName = '';
 
